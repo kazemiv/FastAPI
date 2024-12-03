@@ -28,11 +28,10 @@ jobs:
     
     - name: Push the image tp the docker hub 
       run:  docker push   '${{secrets.DOCKER_USERNAME}}'/api_project:latest
+      
     - name: Deploy to server
       run: | 
-        docker pull '${{secrets.DOCKER_USERNAME}}'/api_project:latest
-        docker stop api_project || true   
-        docker rm api_project || true  
+        docker pull '${{secrets.DOCKER_USERNAME}}'/api_project:latest 
         docker run -d --name api_project -p 8080:8080 '${{secrets.DOCKER_USERNAME}}'/api_project:latest
 
  
