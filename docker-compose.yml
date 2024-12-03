@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command:  uvicorn app.api:app --port 8080 --host 0.0.0.0 --reload
+    volumes:
+    - .:/code
+    ports:
+    - 8080:8080
